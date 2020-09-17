@@ -17,9 +17,8 @@ class LineBotController extends Controller
   }
   public function repeat(Request $request)
   {
-    // Log::debug($request->header());
-    // Log::debug($request->input());
-    // Log::debug($request->getContent());
+    Log::debug($request->header());
+    Log::debug($request->input());
 
     $httpClient = new CurlHTTPClient(env('LINE_ACCESS_TOKEN'));
     $lineBot = new LINEBot($httpClient,['channelSecret'=> env('LINE_CHANNEL_SECRET')]);
@@ -30,7 +29,6 @@ class LineBotController extends Controller
     }
 
     $events = $lineBot->parseEventRequest($request->getContent(),$signature);
-    Log::debug($events);
 
     foreach ($events as $event) {
       if (!$event instanceof TextMessage) {
