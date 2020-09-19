@@ -5,7 +5,7 @@ use GuzzleHttp\Client;
 
 class Gurunavi
 {
-  public function serchRestaurants($word)
+  public function searchRestaurants($word)
   {
     $client = new Client();
     $response = $client
